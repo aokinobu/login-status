@@ -3,27 +3,9 @@
   <head>
     <!-- import latest release version of all components from polygit -->
     <script src="https://polygit.org/components/webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="./icon-toggle-demo.html">
-        <style is="custom-style">
-      /* Define a document-wide default—will not override a :host rule in icon-toggle-demo */
-      :root {
-        --icon-toggle-outline-color: red;
-      }
-      /* Override the value specified in icon-toggle-demo */
-      icon-toggle-demo {
-        --icon-toggle-pressed-color: blue;
-      }
-      /* This rule does not work! */
-      icon-toggle-demo {
-        --icon-toggle-color: purple;
-      }
-      :root {
-      --iron-icon-width: 40px;
-      --iron-icon-height: 40px;
-    }
-    </style>
+    <link rel="import" href="../login-status.html">
   </head>
   <body>
-    <icon-toggle-demo></icon-toggle-demo>
+    <login-status></login-status>
   </body>
 </html>

@@ -1,0 +1,75 @@
+<!-- import latest release version of all components from polygit -->
+<link rel="import" href="https://polygit.org/components/polymer/polymer.html">
+<link rel="import" href="https://polygit.org/components/iron-ajax/iron-ajax.html">
+
+<dom-module id="login-status">
+
+  <template>
+
+    <style>
+      /* local DOM styles go here */
+      :host {
+        display: inline-block;
+      }
+    </style>
+
+    <!-- local DOM goes here -->
+    <iron-ajax auto url="/user" handle-as="json" last-response="{{userdata}}"></iron-ajax>
+    
+    <iron-ajax
+        id="AjaxPost"
+        url="/"
+        method="POST"
+        content-type="application/json"
+        handle-as="json"
+        on-response="_handleAjaxPostResponse"
+        on-error="_handleAjaxPostError"
+        ></iron-ajax>
+    
+    <template is="dom-if" if="{{userdata.email}}">
+      <div>Logged in Status:</div>
+      <div>{{userdata.email}}</div>
+<!--       <form action="/" method="post">
+        <input type="hidden" name="logout" value="" />
+        <div class="submit">
+          <input type="hidden"> -->
+          <div id="logoutbutton">
+            <button class="btn btn-primary">Logout</button>
+          </div>
+ <!--          </input>
+        </div>
+      </form>
+       -->
+    </template>
+
+    <template is="dom-if" if="{{!userdata.email}}">
+      <div>Status: Not Logged in</div>
+      <div>
+        With Google: <a href="/login/google">click here</a>
+      </div>
+      <div>
+        With Github: <a href="/login/github">click here</a>
+      </div>
+    </template> 
+  </template>
+
+  <script>
+  Polymer({
+    is: 'login-status',
+    properties: {
+      userdata: Object,
+    },
+    logoutTop: function() {
+    	this.$.AjaxPost.body = { "logout":"" };
+    	this.$.AjaxPost.generateRequest();
+    },
+  });
+  </script>
+<!--
+    listeners: {
+      'logoutbutton.tap': 'logoutTap'
+    },
+   http://stackoverflow.com/questions/33476444/how-does-http-post-work-in-polymer 
+-->
+
+</dom-module>
