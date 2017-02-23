@@ -15,27 +15,21 @@
 
     <!-- local DOM goes here -->
     <iron-ajax auto url="/user" handle-as="json" last-response="{{userdata}}"></iron-ajax>
-    
-    <iron-ajax
-        id="AjaxPost"
-        url="/"
-        method="POST"
-        content-type="application/json"
-        handle-as="json"
-        on-response="_handleAjaxPostResponse"
-        on-error="_handleAjaxPostError"
-        ></iron-ajax>
+    <iron-ajax id="AjaxPost" url="/logout" method="POST" content-type="application/json;charset=UTF-8" handle-as="document" headers='{"X-Requested-With": "XMLHttpRequest"}' on-response="_handleAjaxPostResponse" on-error="_handleAjaxPostError"></iron-ajax>
     
     <template is="dom-if" if="{{userdata.email}}">
       <div>Logged in Status:</div>
       <div>{{userdata.email}}</div>
-<!--       <form action="/" method="post">
+<!--
+    <iron-request id="AjaxPost"></iron-request>
+
+       <form action="/" method="post">
         <input type="hidden" name="logout" value="" />
         <div class="submit">
           <input type="hidden"> -->
-          <div id="logoutbutton">
-            <button class="btn btn-primary">Logout</button>
-          </div>
+      <div >
+        <button on-tap="specialTap" class="btn btn-primary">Logout</button>
+      </div>
  <!--          </input>
         </div>
       </form>
@@ -51,6 +45,11 @@
         With Github: <a href="/login/github">click here</a>
       </div>
     </template> 
+    
+    <div>I will respond</div>
+    <div>to a tap on</div>
+    <div>any of my children!</div>
+    <div id="special">I am special!</div>
   </template>
 
   <script>
@@ -59,17 +58,36 @@
     properties: {
       userdata: Object,
     },
-    logoutTop: function() {
-    	this.$.AjaxPost.body = { "logout":"" };
-    	this.$.AjaxPost.generateRequest();
+    listeners: {
+      'tap': 'regularTap',
+      'special.tap': 'specialTap',
+    },
+    regularTap: function(e) {
+      alert("Thank you for tapping");
+    },
+//        this.data = { "logout":"" };
+//        var respuesta = this.$.AjaxPost;
+//        console.log(respuesta);
+//        respuesta.go();
+    specialTap: function(e) {
+      this.$.AjaxPost.body = {};
+      this.$.AjaxPost.generateRequest();
+      window.location="/";
+//    	this.$.AjaxPost.send({url: '/logout', method: 'post', body: '{}'});
+//    	this.$.AjaxPost.xhr.post('/logout', {})
+    },
+    _handleAjaxPostResponse: function(e) {
+        console.log(e);
+    },
+    _handleAjaxPostError: function(e) {
+        console.log('error: ' + e);
     },
   });
   </script>
 <!--
-    listeners: {
-      'logoutbutton.tap': 'logoutTap'
-    },
-   http://stackoverflow.com/questions/33476444/how-does-http-post-work-in-polymer 
+
+ 
+http://stackoverflow.com/questions/33476444/how-does-http-post-work-in-polymer 
 -->
 
 </dom-module>
