@@ -1,10 +1,16 @@
 <!-- import latest release version of all components from polygit -->
-<link rel="import" href="https://polygit.org/components/polymer/polymer.html">
-<link rel="import" href="https://polygit.org/components/iron-ajax/iron-ajax.html">
-<link rel="import" href="https://polygit.org/components/paper-dialog/paper-dialog.html">
-<link rel="import" href="https://polygit.org/components/paper-dialog/paper-dialog.html">
-<link rel="import" href="https://polygit.org/components/neon-animation/animations/scale-up-animation.html">
-<link rel="import" href="https://polygit.org/components/neon-animation/animations/fade-out-animation.html">
+<base href="https://polygit.org/components/">
+<script src="webcomponentsjs/webcomponents-lite.js"></script>
+<link rel="import" href="app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="paper-icon-button/paper-icon-button.html">
+<link rel="import" href="iron-icons/iron-icons.html">
+
+<link rel="import" href="polymer/polymer.html">
+<link rel="import" href="iron-ajax/iron-ajax.html">
+<link rel="import" href="paper-dialog/paper-dialog.html">
+<link rel="import" href="paper-dialog/paper-dialog.html">
+<link rel="import" href="neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="neon-animation/animations/fade-out-animation.html">
 
 
 <dom-module id="login-status">
@@ -16,7 +22,7 @@
       :host {
         display: inline-block;
         .googlesignin {
-          content:url({{contentpath}}"/login-status/google_signin_buttons/web/1x/btn_google_signin_dark_focus_web.png");
+          content:url({{contentpath}}"/login-status/images/google_signin_buttons/web/1x/btn_google_signin_dark_focus_web.png");
         }
       }
     </style>
@@ -39,10 +45,10 @@
     <paper-button raised onclick="animated.open()">login</paper-button>
     <paper-dialog id="animated" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
       <div>
-        <a href="/login/google"><div class="googlesignin"><img src="{{contentpath}}/login-status/google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png" /></div></a>
+        <a href="/login/google"><div class="googlesignin"><img src="{{contentpath}}/login-status/images/google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png" /></div></a>
       </div>
       <div>
-        <a href="/login/github"><div class="githubsignin"><img src="{{contentpath}}/login-status/GitHub-Logos/GitHub_Logo.png" width="191" height="61"/></div></a>
+        <a href="/login/github"><div class="githubsignin"><img src="{{contentpath}}/login-status/images/GitHub-Logos/GitHub_Logo.png" width="191" height="61"/></div></a>
       </div>
     </paper-dialog>
 
