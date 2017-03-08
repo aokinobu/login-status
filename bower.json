@@ -8,6 +8,7 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",
+    "webcomponentsjs": "1.0.0-rc.4",
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0"
   }
 }
