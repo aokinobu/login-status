@@ -2,7 +2,9 @@
 <script src="../webcomponentsjs/webcomponents-lite.min.js"></script>
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 <link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../neon-animation/animations/scale-up-animation.html">
 <link rel="import" href="../neon-animation/animations/fade-out-animation.html">
@@ -22,7 +24,7 @@
     </style>
 
     <!-- local DOM goes here -->
-    <iron-ajax auto url="/logincheck" handle-as="json" last-response="{{userdata}}"></iron-ajax>
+    <iron-ajax auto url="{{checkpath}}" handle-as="json" last-response="{{userdata}}"></iron-ajax>
     <iron-ajax id="AjaxPost" url="/logout" method="POST" content-type="application/json;charset=UTF-8" handle-as="document" headers='{"X-Requested-With": "XMLHttpRequest"}' on-response="_handleAjaxPostResponse" on-error="_handleAjaxPostError"></iron-ajax>
     
     <template is="dom-if" if="{{userdata.email}}">
@@ -36,25 +38,42 @@
     </template>
 
     <template is="dom-if" if="{{!userdata.email}}">
-    <paper-button raised onclick="animated.open()">login</paper-button>
-    <paper-dialog id="animated" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+    <paper-button raised on-click="openDialog" ><paper-icon-button icon="account-circle" on-click="openDialog"></paper-icon-button></paper-button>
+    </template> 
+
+    <paper-dialog id="logindialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
       <div>
-        <a href="/login/google"><div class="googlesignin"><img src="images/google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png" /></div></a>
+        <a href="{{googlepath}}"><div class="googlesignin"><img src="images/google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png" /></div></a>
       </div>
       <div>
-        <a href="/login/github"><div class="githubsignin"><img src="images/GitHub-Logos/GitHub_Logo.png" width="191" height="61"/></div></a>
+        <a href="{{githubpath}}"><div class="githubsignin"><img src="images/GitHub-Logos/GitHub_Logo.png" width="191" height="61"/></div></a>
       </div>
     </paper-dialog>
 
-    </template> 
   </template>
+
+
 
   <script>
   Polymer({
     is: 'login-status',
     properties: {
       userdata: Object,
-      contentpath: String,
+      checkpath: {
+        type: String,
+        value: "ws.json",
+      },
+      googlepath: {
+        type: String,
+        value: "/login/google",
+      },
+      githubpath: {
+        type: String,
+        value: "/login/github",
+      }
+    },
+    openDialog: function() {
+      this.$.logindialog.open();
     },
     logoutTap: function(e) {
       this.$.AjaxPost.body = {};

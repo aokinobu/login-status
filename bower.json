@@ -12,6 +12,8 @@
     "iron-ajax": "PolymerElements/iron-ajax",
     "paper-button": "PolymerElements/paper-button",
     "paper-dialog": "PolymerElements/paper-dialog",
+    "paper-button": "PolymerElements/paper-icon-button",
+    "paper-dialog": "PolymerElements/iron-icons",
     "neon-animation": "PolymerElements/neon-animation"
   }
 }
