@@ -7,7 +7,11 @@
     "bower_components"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.0.0",
-    "iron-ajax": "PolymerElements/iron-ajax#^1.0.0"
+    "polymer": "Polymer/polymer",
+    "webcomponentsjs": "",
+    "iron-ajax": "PolymerElements/iron-ajax",
+    "paper-button": "PolymerElements/paper-button",
+    "paper-dialog": "PolymerElements/paper-dialog",
+    "neon-animation": "PolymerElements/neon-animation"
   }
 }
