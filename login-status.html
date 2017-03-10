@@ -28,11 +28,11 @@
     <iron-ajax id="AjaxPost" url="/logout" method="POST" content-type="application/json;charset=UTF-8" handle-as="document" headers='{"X-Requested-With": "XMLHttpRequest"}' on-response="_handleAjaxPostResponse" on-error="_handleAjaxPostError"></iron-ajax>
     
     <template is="dom-if" if="{{userdata.email}}">
-      <div>Logged in as: {{userdata.email}}</div>
       <div>
       <form id="logout" action="/logout" method="post" on-submit="logoutTap">
         <input type="hidden" name="logout" value="" />
-        <button>Log out</button>
+      {{userdata.email}}
+        <paper-icon-button icon="power-settings-new"></paper-icon-button>
       </form>
       </div>
     </template>
