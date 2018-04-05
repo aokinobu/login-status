@@ -1,18 +1,18 @@
 {
   "name": "login-status",
-  "version": "0.0.1",
   "homepage": "https://github.com/aokinobu/login-status",
-  "license": "MIT",
+  "license": "LGPL-3.0",
   "ignore": [
     "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "bower_components"
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
-    "neon-animation": "PolymerElements/neon-animation#^1.2.4"
+    "neon-animation": "PolymerElements/neon-animation#^1.2.4",
+    "paper-button": "PolymerElements/paper-button",
+    "paper-dialog": "PolymerElements/paper-dialog",
+    "paper-button": "PolymerElements/paper-icon-button",
+    "paper-dialog": "PolymerElements/iron-icons"
   }
 }
